@@ -2,7 +2,6 @@ package com.croche.app.app_pedidos.model;
 
 
 import jakarta.persistence.*;
-import jakarta.websocket.ClientEndpoint;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
