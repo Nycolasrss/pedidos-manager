@@ -1,4 +1,4 @@
-### raciocinio passo a passo em ordem de como a construção é feita
+### anotações sobre o projeto
 
 -- Criada as classes User,java, Client.java e definidos os seus atributos.
 -- Utilizado de JPA/Hibernate para fazer o mapeamento do banco de dados através das classes criadas.
