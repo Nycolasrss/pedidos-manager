@@ -14,3 +14,7 @@
 -- @JoinColumn(name="client_id") - indica que a coluna pedidos da tabela que irá guardar o ID do cliente
 -- @OneToMany - indica que um cliente pode ter muitos pedidos
 -- (mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true) - garante que tudo seja apagado junto com o registro do cliente
+-- @Autowired - injeta o repositorio, serviços, na classe escolhida, conforme a construção
+-- @PostMaping - endpoint para criar algo
+-- @RestController - utiliza de requisições rest
+-- @RequestMaping("/***") - url de caminho para o endpoint
