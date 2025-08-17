@@ -26,5 +26,4 @@ public class Client {
     private List<Pedidos> pedidos;
 
 
-
 }
