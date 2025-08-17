@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "clients")
@@ -25,6 +27,10 @@ public class Client {
     private String phone;
     private String address;
     private Boolean ready;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedidos> pedidos;
+
 
 
 }

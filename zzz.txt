@@ -10,3 +10,7 @@
 -- @GeneratedValue(strategy = GenerateionType.IDENTITY) - instrui a criar o ID para cada novo registro
 -- @Data @NoArgsConstructor - para gerar getters e setters com menos esforço, (importante importar o lombok)
 -- @Column(unique = true) - foi usada no cpf, para garantir que não tenham dois iguais
+-- @ManyToOne - para identificar que um vários pedidos podem pertencer a um cliente apenas
+-- @JoinColumn(name="client_id") - indica que a coluna pedidos da tabela que irá guardar o ID do cliente
+-- @OneToMany - indica que um cliente pode ter muitos pedidos
+-- (mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true) - garante que tudo seja apagado junto com o registro do cliente
