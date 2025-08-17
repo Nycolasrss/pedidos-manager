@@ -24,7 +24,6 @@ public class Client {
 
     private String phone;
     private String address;
-    private String pedido;
     private Boolean ready;
 
 
