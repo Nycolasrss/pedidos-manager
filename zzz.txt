@@ -2,6 +2,10 @@
 
 -- Criada as classes User,java, Client.java e definidos os seus atributos.
 -- Utilizado de JPA/Hibernate para fazer o mapeamento do banco de dados através das classes criadas.
+-- Model para o construtor e todos os métodos da class,
+--Service para as regras de negocio
+-- Controller para as requisições HTTP
+-- Repositorios para a camada de persistenica
 
 ## Anotações utilizadas
 -- @Entity - identifica a classe como uma entidade no banco de dados
