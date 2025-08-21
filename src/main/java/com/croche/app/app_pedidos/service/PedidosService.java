@@ -13,4 +13,6 @@ public class PedidosService {
     private PedidosRepository pedidosRepository;
 
 
+    public Pedidos save(Pedidos pedidos) {return pedidosRepository.save(pedidos);}
+
 }

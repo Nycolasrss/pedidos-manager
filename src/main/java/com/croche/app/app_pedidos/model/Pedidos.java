@@ -28,9 +28,10 @@ public Pedidos(Long id, String description, Double valor, LocalDate data, String
     this.id = id;
     this.description = description;
     this.valor = valor;
+    this.data = data;
     this.status = status;
     this.client = client;
-    this.data = data;
+
 }
 
 
