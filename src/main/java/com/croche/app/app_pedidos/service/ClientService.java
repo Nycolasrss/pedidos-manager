@@ -10,4 +10,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+
+    public Client save(Client client) {
+        return clientRepository.save(client);
+    }
 }

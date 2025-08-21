@@ -1,6 +1,7 @@
 package com.croche.app.app_pedidos.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,6 @@ import java.util.List;
 @Table(name = "clients")
 @Data
 @NoArgsConstructor
-
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +25,14 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedidos> pedidos;
 
-    // Contrutor com parametros
-    public Client(Long id, String name, String cpf, String phone, String address, List pedidos){
+    // Construtor com parametros
+    public Client(Long id, String name, String cpf, String phone, String address, Boolean ready, List<Pedidos> pedidos){
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.phone = phone;
         this.address = address;
+        this.ready = ready;
         this.pedidos = pedidos;
     }
 
