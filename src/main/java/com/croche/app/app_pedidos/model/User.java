@@ -17,7 +17,6 @@ public class User {
     @Column(unique = true)
     private String cpf;
     private String phone;
-    private String address;
 
     // Construtor
     public User(Long id, String name, String cpf, String phone, String address){

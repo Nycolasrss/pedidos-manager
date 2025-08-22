@@ -20,7 +20,6 @@ public class Client {
     @Column(unique = true)
     private String cpf;
     private String phone;
-    private String address;
     private Boolean ready;
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Pedidos> pedidos;
