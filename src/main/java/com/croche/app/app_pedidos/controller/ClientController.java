@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/clients")// URL para os endpoints do cliente
@@ -40,5 +42,19 @@ public ResponseEntity<Client> create(@RequestBody Client client){
     //.body(savedclient) salva o ID para retornar
     return ResponseEntity.status(HttpStatus.CREATED).body(savedClient);
 }
+
+    @GetMapping
+    //busca a lista de clientes, utiliza da anotação @RequestParam, para filtar pelo name
+    public ResponseEntity<List<Client>> getClients(@RequestParam String name ){
+        // condição de busca, caso não seja nulo e livre de caracteres, retornará corretamente
+        if(name != null && !name.isEmpty()){
+            List<Client> clients = clientService.findByName(name);
+            return ResponseEntity.ok(clients);
+            // caso a condição anterior não seja seguida, retorna todos os clientes
+        }else {
+             List<Client> clients= clientService.findAll();
+             return ResponseEntity.ok(clients);
+        }
+    }
 
 }
