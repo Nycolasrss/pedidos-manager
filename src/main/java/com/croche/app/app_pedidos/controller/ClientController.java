@@ -12,13 +12,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/clients")// URL para os endpoints do cliente
 public class ClientController {
 
-    @Autowired
-    private ClientService clientService;
+    // declarção da variavel como constante e encapsulada
+    // ClientService é o tipo de variavel, enquanto clientService é a variavel utilizada para referenciar a classe
+    private final ClientService clientService;
 
+    @Autowired
+    // criação do construtor da classe atual
+    // recebe um objeto ClientService como parametro, pelo próprio spring
+   public ClientController (ClientService clientService){
+        //this é a referencia a instância atual, e acessa a variavel declarada anteriormente
+        this.clientService = clientService;
+    }
+// metodo http usado
 @PostMapping
+
+// Ele retorna um objeto 'ResponseEntity' de 'Client', que é a resposta HTTP completa,
+// contendo o status (ex: 201), os cabeçalhos e o corpo (o objeto Client).
+// a anotação RequestBody serve para converter o json do corpo da requisição em um objeto do tipo Client
 public ResponseEntity<Client> create(@RequestBody Client client){
+        // chama o metodo save da classe service
+        // o client da requisição é passado como argumento
+        // o serviço que utilizado da interface repository salva os dados no banco
+        // o objeto Client que retorna tem o ID gerado pelo banco
     Client savedClient = clientService.save(client);
-    return ResponseEntity.status(HttpStatus.CREATED).body(client);
+    // constroi a resopsta HTTP de retorno
+    // define o status
+    //.body(savedclient) salva o ID para retornar
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedClient);
 }
 
 }

@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/Users")
 public class UserController {
 
+    private final UserService userService;
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService){
+        this.userService = userService;
+    }
 
     @PostMapping
     public ResponseEntity<User> created(@RequestBody User user){
         User saveduser = userService.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saveduser);
     }
 
 }

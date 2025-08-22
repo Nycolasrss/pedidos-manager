@@ -2,7 +2,6 @@ package com.croche.app.app_pedidos.controller;
 
 
 import com.croche.app.app_pedidos.model.Pedidos;
-import com.croche.app.app_pedidos.repository.PedidosRepository;
 import com.croche.app.app_pedidos.service.PedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/pedidos") // URL base para endpoints da classe
 public class PedidosController {
 
+
+    private final PedidosService pedidosService;
     @Autowired
-    private PedidosService pedidosService;
+    public PedidosController (PedidosService pedidosService){
+        this.pedidosService = pedidosService;
+    }
 
     @PostMapping
     public ResponseEntity<Pedidos> created(@RequestBody Pedidos pedidos){
         Pedidos savedpedidos = pedidosService.save(pedidos);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pedidos);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedpedidos);
     }
 }
