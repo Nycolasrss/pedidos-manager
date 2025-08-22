@@ -1,6 +1,7 @@
 package com.croche.app.app_pedidos.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Pedidos {
     private Double valor;
     private LocalDate data;
     private String status;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name= "client_id")
     private Client client;
