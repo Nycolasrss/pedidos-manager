@@ -27,4 +27,7 @@ public class ClientService {
         return clientRepository.findByNameContainingIgnoreCase(name);
     }
 
+    public void deletById(Long id){
+        clientRepository.deleteById(id);
+    }
 }

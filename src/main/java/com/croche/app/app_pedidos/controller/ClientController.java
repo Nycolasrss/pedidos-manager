@@ -57,4 +57,10 @@ public ResponseEntity<Client> create(@RequestBody Client client){
         }
     }
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletClients(@PathVariable Long id){
+        clientService.deletById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
