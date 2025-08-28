@@ -19,15 +19,15 @@ public class ClientService {
     }
 
     // para buscar os clientes
-    public List<Client> findAll(){
-        return clientRepository.findAll();
-    }
-    // buscar clientes por nome
-    public List<Client> findByName(String name){
-        return clientRepository.findByNameContainingIgnoreCase(name);
-    }
+    public List<Client> findAll(){return clientRepository.findAll();}
 
-    public void deletById(Long id){
-        clientRepository.deleteById(id);
-    }
+    // buscar clientes por nome
+    public List<Client> findByName(String name){return clientRepository.findByNameContainingIgnoreCase(name);}
+
+    // para deletar cliente
+    public void deletById(Long id){clientRepository.deleteById(id);}
+
+
+
+
 }
