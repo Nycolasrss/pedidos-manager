@@ -54,7 +54,7 @@ public class PedidosController {
            pedidoExistente.setStatus((pedidoAtualizado.getStatus()));
        }
 
-       if (pedidoAtualizado.setValor() != null){
+       if (pedidoAtualizado.getValor() != null){
            pedidoExistente.setValor(pedidoAtualizado.getValor());
        }
        Pedidos pedidoSalvo = pedidosService.save(pedidoExistente);

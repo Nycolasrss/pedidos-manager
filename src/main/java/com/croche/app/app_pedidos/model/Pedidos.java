@@ -37,6 +37,4 @@ public Pedidos(Long id, String description, Double valor, LocalDate data, String
 }
 
 
-
-
 }
