@@ -26,12 +26,12 @@ public class ClientController {
         this.clientService = clientService;
     }
 // metodo http usado
-@PostMapping
+    @PostMapping
 
 // Ele retorna um objeto 'ResponseEntity' de 'Client', que é a resposta HTTP completa,
 // contendo o status (ex: 201), os cabeçalhos e o corpo (o objeto Client).
 // a anotação RequestBody serve para converter o json do corpo da requisição em um objeto do tipo Client
-public ResponseEntity<Client> create(@RequestBody Client client){
+    public ResponseEntity<Client> create(@RequestBody Client client){
         // chama o metodo save da classe service
         // o client da requisição é passado como argumento
         // o serviço que utilizado da interface repository salva os dados no banco

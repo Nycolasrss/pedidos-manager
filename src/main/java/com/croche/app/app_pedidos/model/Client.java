@@ -19,8 +19,6 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(unique = true)
-    private String cpf;
     private String phone;
     private Boolean ready;
     @JsonManagedReference
@@ -28,10 +26,9 @@ public class Client {
     private List<Pedidos> pedidos = new ArrayList<>();
 
     // Construtor com parametros
-    public Client(Long id, String name, String cpf, String phone, Boolean ready, List<Pedidos> pedidos){
+    public Client(Long id, String name, String phone, Boolean ready, List<Pedidos> pedidos){
         this.id = id;
         this.name = name;
-        this.cpf = cpf;
         this.phone = phone;
         this.ready = ready;
         this.pedidos = pedidos;

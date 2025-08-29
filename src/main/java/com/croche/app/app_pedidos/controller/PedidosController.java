@@ -34,5 +34,31 @@ public class PedidosController {
         return ResponseEntity.ok(pedidos);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletPedidos(@PathVariable Long id){
+        pedidosService.deletById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Pedidos> putPedidos(@PathVariable Long id, @RequestBody Pedidos pedidoAtualizado){
+        Pedidos pedidoExistente = pedidosService.findById(id);
+        if (pedidoExistente == null){
+            return  ResponseEntity.notFound().build();
+        }
+        if (pedidoAtualizado.getDescription() != null) {
+            pedidoExistente.setDescription(pedidoAtualizado.getDescription());
+        }
+
+       if (pedidoAtualizado.getStatus() != null){
+           pedidoExistente.setStatus((pedidoAtualizado.getStatus()));
+       }
+
+       if (pedidoAtualizado.setValor() != null){
+           pedidoExistente.setValor(pedidoAtualizado.getValor());
+       }
+       Pedidos pedidoSalvo = pedidosService.save(pedidoExistente);
+       return ResponseEntity.ok(pedidoSalvo);
+    }
 
 }
