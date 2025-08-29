@@ -16,6 +16,10 @@ public class PedidosService {
 
     public Pedidos save(Pedidos pedidos) {return pedidosRepository.save(pedidos);}
 
-    public List<Pedidos> findAll(){return pedidosRepository.findAll();    }
+
+    public List<Pedidos> findAll(){return pedidosRepository.findAll();}
+
+
+    public void deletById(Long id){pedidosRepository.deleteById(id);}
 }
 
