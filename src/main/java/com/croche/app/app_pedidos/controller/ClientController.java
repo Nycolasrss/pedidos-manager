@@ -5,6 +5,7 @@ import com .croche.app.app_pedidos.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class ClientController {
 // Ele retorna um objeto 'ResponseEntity' de 'Client', que é a resposta HTTP completa,
 // contendo o status (ex: 201), os cabeçalhos e o corpo (o objeto Client).
 // a anotação RequestBody serve para converter o json do corpo da requisição em um objeto do tipo Client
-    public ResponseEntity<Client> create(@RequestBody Client client){
+    public ResponseEntity<Client> create(@Validated @RequestBody Client client){
         // chama o metodo save da classe service
         // o client da requisição é passado como argumento
         // o serviço que utilizado da interface repository salva os dados no banco

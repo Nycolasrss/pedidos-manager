@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.hibernate.annotations.NotFound;
+
 import java.time.LocalDate;
 
 @Entity

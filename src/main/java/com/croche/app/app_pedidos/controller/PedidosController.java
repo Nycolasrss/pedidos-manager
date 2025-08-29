@@ -7,6 +7,7 @@ import com.croche.app.app_pedidos.service.PedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class PedidosController {
     }
 
     @PostMapping
-    public ResponseEntity<Pedidos> created(@RequestBody Pedidos pedidos){
+    public ResponseEntity<Pedidos> created(@Validated @RequestBody Pedidos pedidos){
         Pedidos savedpedidos = pedidosService.save(pedidos);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedpedidos);
     }
@@ -41,7 +42,7 @@ public class PedidosController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Pedidos> putPedidos(@PathVariable Long id, @RequestBody Pedidos pedidoAtualizado){
+    public ResponseEntity<Pedidos> putPedidos(@PathVariable Long id, @Validated @RequestBody Pedidos pedidoAtualizado){
         Pedidos pedidoExistente = pedidosService.findById(id);
         if (pedidoExistente == null){
             return  ResponseEntity.notFound().build();
