@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.NotFound;
 
 import java.time.LocalDate;
@@ -22,14 +23,14 @@ public class Pedidos {
     private String description;
     private Double valor;
     private LocalDate data;
-    private String status;
+    private PedidoStatus status;
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name= "client_id")
     private Client client;
 
     // construtor
-public Pedidos(Long id, String description, Double valor, LocalDate data, String status, Client client){
+public Pedidos(Long id, String description, Double valor, LocalDate data, PedidoStatus status, Client client){
     this.id = id;
     this.description = description;
     this.valor = valor;

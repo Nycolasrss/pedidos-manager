@@ -1,7 +1,7 @@
 package com.croche.app.app_pedidos.controller;
 
 
-import com.croche.app.app_pedidos.model.Client;
+import com.croche.app.app_pedidos.model.PedidoStatus;
 import com.croche.app.app_pedidos.model.Pedidos;
 import com.croche.app.app_pedidos.service.PedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/pedidos") // URL base para endpoints da classe
@@ -42,24 +43,40 @@ public class PedidosController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Pedidos> putPedidos(@PathVariable Long id, @Validated @RequestBody Pedidos pedidoAtualizado){
-        Pedidos pedidoExistente = pedidosService.findById(id);
-        if (pedidoExistente == null){
+    public ResponseEntity<Pedidos> AtualizarPedidos(@PathVariable Long id, @Validated @RequestBody Pedidos pedidoAtualizado){
+        Optional<Pedidos> pedidoExistente = pedidosService.findById(id);
+        if (pedidoExistente.isEmpty()){
             return  ResponseEntity.notFound().build();
         }
         if (pedidoAtualizado.getDescription() != null) {
-            pedidoExistente.setDescription(pedidoAtualizado.getDescription());
+            pedidoExistente.get().setDescription(pedidoAtualizado.getDescription());
         }
-
-       if (pedidoAtualizado.getStatus() != null){
-           pedidoExistente.setStatus((pedidoAtualizado.getStatus()));
-       }
-
+        if (pedidoAtualizado.getStatus() != null){
+            pedidoExistente.get().setStatus(pedidoExistente.get().getStatus());
+        }
        if (pedidoAtualizado.getValor() != null){
-           pedidoExistente.setValor(pedidoAtualizado.getValor());
+           pedidoExistente.get().setValor(pedidoAtualizado.getValor());
        }
-       Pedidos pedidoSalvo = pedidosService.save(pedidoExistente);
+       Pedidos pedidoSalvo = pedidosService.save(pedidoExistente.orElse(null));
        return ResponseEntity.ok(pedidoSalvo);
     }
 
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<Pedidos> atualizarStatus(@PathVariable Long id, @RequestBody PedidoStatus novoStatus) {
+
+        // Busca o pedido existente no banco de dados
+        Optional<Pedidos> pedidoExistente = pedidosService.findById(id);
+
+        if (pedidoExistente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Aplica a nova lógica de status
+        pedidoExistente.get().setStatus(novoStatus);
+
+        // Salva a alteração no banco de dados
+        Pedidos pedidoAtualizado = pedidosService.save(pedidoExistente.orElse(null));
+
+        return ResponseEntity.ok(pedidoAtualizado);
+    }
 }
